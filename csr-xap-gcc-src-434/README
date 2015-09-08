@@ -1,0 +1,38 @@
+
+This archive contains sources for CSR's XAP2+ ports of GCC and Binutils. 
+
+
+== Contents of this Archive ==
+
+README             - This file
+gcc-xap.diff       - Diff relative to GCC 4.3.4
+gcc-extra.tgz      - Files added to GCC
+binutils-xap.diff  - Diff relative to Binutils 2.17
+binutils-extra.tgz - Files added to Binutils
+build.sh           - Build script
+
+
+== Building the Software ==
+
+- On Microsoft Windows, download and install MSys and MinGW from
+  http://www.mingw.org
+
+- Download the following files to the csr-xap-gcc-src-434 directory
+
+http://www.mirrorservice.org/sites/ftp.gnu.org/gnu/gcc/gcc-4.3.4/gcc-core-4.3.4.tar.gz
+http://www.mirrorservice.org/sites/ftp.gnu.org/gnu/gmp/gmp-4.3.1.tar.gz
+http://www.mirrorservice.org/sites/ftp.gnu.org/gnu/mpfr/mpfr-2.4.2.tar.gz
+http://www.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/binutils-2.17.tar.bz2
+
+The MD5 digests should be as follows:
+
+1d81edd0569de4d84091526fd578dd7b  binutils-2.17.tar.bz2
+9a135473a12978a22b7ca2fc51485762  gcc-core-4.3.4.tar.gz
+a8f60ac823a16e61335dba9c08875c06  gmp-4.3.1.tar.gz
+0e3dcf9fe2b6656ed417c89aa9159428  mpfr-2.4.2.tar.gz
+
+- In the shell (MSys on windows), change to the csr-xap-gcc-src-434 directory
+  and run ./build.sh
+
+- GCC will install to ./install/gcc/, binutils to ./install/binutils/.
+
