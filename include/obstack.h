@@ -20,7 +20,19 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software
    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
-   USA.  */
+   USA.  
+
+   Copyright (c) 2016, The Linux Foundation. All rights reserved.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License version 2 and
+   only version 2 as published by the Free Software Foundation.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+*/
 
 /* Summary:
 
@@ -418,12 +430,16 @@ __extension__								\
    and that the data added so far to the current object
    shares that much alignment.  */
 
+/* brian dodge (zoran) - broke the = and ++ of this into two
+ * parts since you really cant ++ a void**
+ */
 # define obstack_ptr_grow(OBSTACK,datum)				\
 __extension__								\
 ({ struct obstack *__o = (OBSTACK);					\
    if (__o->next_free + sizeof (void *) > __o->chunk_limit)		\
      _obstack_newchunk (__o, sizeof (void *));				\
-   *((void **)__o->next_free)++ = ((void *)datum);			\
+   *(void **)__o->next_free = (void *)datum;            \
+   __o->next_free += sizeof(void *);                     \
    (void) 0; })
 
 # define obstack_int_grow(OBSTACK,datum)				\

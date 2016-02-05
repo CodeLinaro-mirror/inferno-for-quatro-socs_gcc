@@ -1,0 +1,46 @@
+# Copyright (c) 2016, The Linux Foundation. All rights reserved.
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 and
+# only version 2 as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+USE_COLLECT2 =
+
+# CROSS_LIBGCC1 = libgcc1-asm.a
+#quatro.o: $(srcdir)/config/quatro/quatro.c \
+#	$(srcdir)/config/quatro/quatro-protos.h $(CONFIG_H) $(TREE_H) $(GGC_H)\
+#	$(RTL_H) $(REGS_H) hard-reg-set.h real.h insn-config.h conditions.h \
+#	output.h $(INSN_ATTR_H) $(SYSTEM_H) cpplib.h c-pragma.h toplev.h $(TARGET_H) libfuncs.h \
+#	$(CPPLIB_H) $(C_COMMON_H) $(TARGET_DEF_H) function.h sched-int.h $(TM_P_H) $(EXPR_H) $(OPTABS_H)
+#	$(CC) -c $(ALL_CFLAGS) $(ALL_CPPFLAGS) $(INCLUDES) $< $(OUTPUT_OPTION)# CROSS_LIBGCC1 = libgcc1-asm.a
+
+LIB1ASMSRC = quatro/libgcc.S
+LIB1ASMFUNCS = _divsi3 _modsi3 _udivsi3 _umodsi3
+
+LIB2ADDEH=
+
+LIBGCC = stmp-multilib
+INSTALL_LIBGCC = install-multilib
+
+# libgcc...
+LIBGCC1_TEST =
+
+# OTI-4110 change added to map DF, SF and DI to SI
+# refer to this link for more details http://www.ecoscentric.com/devzone/gcc-3.2.1-h8300.patch
+
+TARGET_LIBGCC2_CFLAGS = -DDI=SI -DDF=SF
+
+# Eliminate default "-g" from debug flags to turn off debug build of
+# the libgcc library to make it smaller.  (The user won't have access
+# to the source files anyway.)
+#
+# Also add "-P" to prevent generation of linemarkers.  Linemarkers
+# also contain the source file name, which screws up the build of
+# our assembler sources.
+#
+LIBGCC2_DEBUG_CFLAGS =-P

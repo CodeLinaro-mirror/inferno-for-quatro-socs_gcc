@@ -11073,7 +11073,8 @@ ffecom_get_invented_identifier (const char *pattern, ...)
   return decl;
 }
 
-ffeinfoBasictype
+ffeinfoKindtype
+//	ffeinfoBasictype brian dodge (zoran) made to match the prototype
 ffecom_gfrt_basictype (ffecomGfrt gfrt)
 {
   assert (gfrt < FFECOM_gfrt);

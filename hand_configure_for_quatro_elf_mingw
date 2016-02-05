@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Copyright (c) 2016, The Linux Foundation. All rights reserved.
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 and
+# only version 2 as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+echo before you start make sure you use gcc/fixinc/mingw_mkfixinc.sh instead of gcc/fixincmkfixinc.sh
+echo and also make sure you use libiberty/Makefile.in.mingw instead of
+
+export PATH=${PATH}:/usr/local/opt/zoran/quatro/quatro-elf/bin
+export CC=/cygdrive/c/MinGW/bin/gcc
+
+./configure --target=quatro-elf --prefix=/usr/local/opt/zoran/quatro/quatro-elf \
+	--with-gnu-as --with-gnu-ld \
+	--enable-languages=c		\
+	--disable-doc-build --disable-nls
+

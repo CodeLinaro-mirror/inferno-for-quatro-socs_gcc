@@ -101,7 +101,6 @@ case $machine in
     powerpcle-*-cygwin* | \
     thumb-*-coff* | \
     quatro-*-elf |    \
-    quatro-*-coff |    \
     thumbel-*-coff* )
         #  Don't do any fixing.
         #
@@ -118,6 +117,8 @@ then
     (echo "#! /bin/sh" ; echo "exit 0" ) > ${target}
     chmod 755 ${target}
     exit 0
+else
+    echo $fixincludes
 fi
 
 #  IF the fixer is supplied in our source directory,
